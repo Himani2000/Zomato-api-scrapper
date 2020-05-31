@@ -1,18 +1,17 @@
-#Zomato-api-scrapper
+##Zomato-api-scrapper
 
 ```
 
-The scrapper gives the details of all the restaurants in a particular city. Aim is to fetch the data a user want and apply 
-data analytics as per their data.
+The scrapper extracts  the details of all the restaurants in a particular city. 
+Aim is to fetch the data a user want and apply data analytics 
+as per their data.
 
 
 
 ```
 
 
-
-
-## Running the tests
+## Running the file
 
 ```
 python main.py <api_key> <city_name> <max_Results>
@@ -20,8 +19,7 @@ python main.py <api_key> <city_name> <max_Results>
 ```
 
 
-
-##To be Added 
+## To be Added 
 
 ```
 1. Extract  complete details about the restaurants.
@@ -44,7 +42,7 @@ python main.py <api_key> <city_name> <max_Results>
 
 ```
 
-##Contributors 
+## Contributors 
 ```
 1.Himani2000 
 
