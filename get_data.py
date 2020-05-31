@@ -40,4 +40,32 @@ def get_establishments(city_id=1):
     url_updated=urllib.parse.urlunparse(url_parts)
     response=requests.get(url_updated,headers=header)
     return response.json()
+
+def getLocationDetails(cityname,header):
+    url="https://developers.zomato.com/api/v2.1/locations?query=Delhi&count=1"
+    url_parts=list(urllib.parse.urlparse(url))
+    query=dict(urllib.parse.parse_qsl(url_parts[4]))
+    query['query']=cityname
+    url_parts[4] = urllib.parse.urlencode(query)
+    url_updated=urllib.parse.urlunparse(url_parts)
+    response=requests.get(url_updated,headers=header)
+    response=response.json()
+    entity_id=response['location_suggestions'][0]['entity_id']
+    entity_type=response['location_suggestions'][0]['entity_type']
+    return entity_id,entity_type
+
+def searchResturant(cityname,count,header):
+    url="https://developers.zomato.com/api/v2.1/search?entity_id=1&entity_type=city&q=Delhi&count=5"
+    url_parts=list(urllib.parse.urlparse(url))
+    query = dict(urllib.parse.parse_qsl(url_parts[4]))
+    entity_id,entity_type=getLocationDetails("Delhi",header)
+    query['entity_id']=entity_id
+    query['entity_type']=entity_type
+    query['q']=cityname
+    query['count']=count
+    url_parts[4] = urllib.parse.urlencode(query)
+    url_updated=urllib.parse.urlunparse(url_parts)
+    responses=requests.get(url_updated,headers=header)
+    responses=responses.json()
+    return responses
     

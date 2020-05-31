@@ -38,4 +38,25 @@ def make_establishmentdata():
 	df_est=pd.DataFrame({'establishment_id':est_id,'establishment_name':est_name})
 	
 	
-	
+def makeResturantData(responses):
+    restaurant_ids=[]
+    restaurant_names=[]
+    restaurant_urls=[]
+    restaurant_localitys=[]
+    restaurant_cuisines=[]
+    restaurant_timings=[]
+    restaurant_averageCosts=[]
+    restaurant_userRatings=[]
+    for response in responses['restaurants']:
+        restaurant_ids.append(response['restaurant']['id'])
+        restaurant_names.append(response['restaurant']['name'])
+        restaurant_urls.append(response['restaurant']['url'])
+        restaurant_localitys.append(response['restaurant']['location']['locality'])
+        restaurant_cuisines.append(response['restaurant']['cuisines'])
+        restaurant_timings.append(response['restaurant']['timings'])
+        restaurant_averageCosts.append(response['restaurant']['average_cost_for_two'])
+        restaurant_userRatings.append(response['restaurant']['user_rating']['aggregate_rating'])
+
+    df_restaurant=pd.DataFrame({'id':restaurant_ids,'name':restaurant_names,'url':restaurant_urls,'locality':restaurant_localitys,'cuisines':restaurant_cuisines,'timing':restaurant_timings,'averagecost':restaurant_averageCosts,'rating':restaurant_averageCosts})
+    return df_restaurant
+
